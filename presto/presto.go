@@ -103,6 +103,7 @@ const (
 	prestoCatalogHeader     = "X-Presto-Catalog"
 	prestoSchemaHeader      = "X-Presto-Schema"
 	prestoSessionHeader     = "X-Presto-Session"
+	prestoClientTags        = "X-Presto-Client-Tags"
 
 	KerberosEnabledConfig    = "KerberosEnabled"
 	kerberosKeytabPathConfig = "KerberosKeytabPath"
@@ -280,6 +281,7 @@ func newConn(dsn string) (*Conn, error) {
 		prestoCatalogHeader: prestoQuery.Get("catalog"),
 		prestoSchemaHeader:  prestoQuery.Get("schema"),
 		prestoSessionHeader: prestoQuery.Get("session_properties"),
+		prestoClientTags:    prestoQuery.Get("client_tags"),
 	} {
 		if v != "" {
 			c.httpHeaders.Add(k, v)
